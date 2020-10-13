@@ -17,6 +17,7 @@ app.use(express.json());
 const routes = require("./routes");
 app.use(routes);
 
+// Routing in production
 if (process.env.NODE_ENV === "production") {
   // Express will serve up production assets
   const path = require("path");
