@@ -4,7 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
-const PORT = process.env.port || 5000;
+const PORT = process.env.PORT || 5000;
 
 // Require MongoDB connection
 require("./models");
@@ -23,13 +23,10 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.resolve(__dirname, "../client/build")));
 
   // Express will send React app if no API routes are hit
-  app.get((req, res) => {
+  app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
   });
 }
-
-// If no API routes are hit, send the React app
-const path = require("path");
 
 // Bootstrap server
 app.listen(PORT, () => {
